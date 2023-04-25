@@ -29,13 +29,15 @@ function writeChat() {
     //alert("You typed: " + chat1);
     //append(myArray, 'Peach');
   
-    document.getElementById("chatLi").innerHTML = chat2;
+    //document.getElementById("chatLi").innerHTML = chat2;
 
     const messageplace = document.querySelector(".messages");
     const messagediv = document.createElement("div");
     //messagediv.classList.add("message", "outgoing");
     messagediv.innerHTML = `<p> ${chat2} </p>`;
     messageplace.appendChild(messagediv);
+	
+	document.getElementById("chatBox").value = "";
     //saveChat({ "user": user2, "message": chat1});
     // var xhr = new XMLHttpRequest();
     // xhr.open("POST", "https://chattest.anriquegame.repl.co", true);

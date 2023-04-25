@@ -34,7 +34,7 @@ function writeChat() {
     const messageplace = document.querySelector(".messages");
     const messagediv = document.createElement("div");
     //messagediv.classList.add("message", "outgoing");
-    messagediv.innerHTML = '<p> ${chat2} </p\>';
+    messagediv.innerHTML = `<p> ${chat2} </p>`;
     messageplace.appendChild(messagediv);
     //saveChat({ "user": user2, "message": chat1});
     // var xhr = new XMLHttpRequest();

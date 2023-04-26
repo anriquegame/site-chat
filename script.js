@@ -18,6 +18,17 @@ function change() {
     var user2 = localStorage['objectToPass'];
     //alert ("You typed: " + user2);
     document.getElementById("demo").innerHTML = user2;
+
+    //listening to server
+    const socket = new WebSocket('ws://localhost:4001')
+    socket.addEventListener('open', function (event) {
+        socket.send('hello server');
+    })
+
+    socket.addEventListener('message', function (event) {
+        console.log(event.data);
+    });
+    
 }
   
 function writeChat() {

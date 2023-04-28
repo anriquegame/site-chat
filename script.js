@@ -20,14 +20,14 @@ function change() {
     document.getElementById("demo").innerHTML = user2;
 
     //listening to server
-    const socket = new WebSocket('ws://localhost:4001')
-    socket.addEventListener('open', function (event) {
-        socket.send('hello server');
-    })
+    // const socket = new WebSocket('ws://localhost:4001')
+    // socket.addEventListener('open', function (event) {
+    //     socket.send('hello server');
+    // })
 
-    socket.addEventListener('message', function (event) {
-        console.log(event.data);
-    });
+    // socket.addEventListener('message', function (event) {
+    //     console.log(event.data);
+    // });
     
 }
   
@@ -36,11 +36,27 @@ function writeChat() {
     var user2 = localStorage['objectToPass'];
     //localStorage.removeItem('objectToPass'); // Clear the localStorage
     var chat1 = document.getElementById("chatBox").value;
-    var chat2 = (user2 + ": " + chat1);//por isso no que ta errado
+    var chat2 = (user2 + ": " + chat1);
     //alert("You typed: " + chat1);
     //append(myArray, 'Peach');
   
     //document.getElementById("chatLi").innerHTML = chat2;
+
+    // if(socket == undefined) {
+        const socket = new WebSocket('ws://localhost:4001')
+        socket.addEventListener('open', function (event) {
+            socket.send(String(chat2));
+        })
+        socket.addEventListener('message', function (event) {
+             console.log(event.data);
+        });
+        //arrumar isso
+    // }
+    // else{
+    //     socket.send(String(chat2));
+    // }
+    
+    
 
     const messageplace = document.querySelector(".messages");
     const messagediv = document.createElement("div");

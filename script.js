@@ -49,15 +49,15 @@ function writeChat() {
         })
         socket.addEventListener('message', function (event) {
              console.log(event.data);
+             messagechat(event.data);
         });
         //arrumar isso
     // }
     // else{
     //     socket.send(String(chat2));
     // }
-    
-    
-
+}
+function messagechat(chat2) {
     const messageplace = document.querySelector(".messages");
     const messagediv = document.createElement("div");
     //messagediv.classList.add("message", "outgoing");
@@ -65,15 +65,4 @@ function writeChat() {
     messageplace.appendChild(messagediv);
 	
 	document.getElementById("chatBox").value = "";
-    //saveChat({ "user": user2, "message": chat1});
-    // var xhr = new XMLHttpRequest();
-    // xhr.open("POST", "https://chattest.anriquegame.repl.co", true);
-    // xhr.setRequestHeader("Content-Type", "application/json");
-    // xhr.onreadystatechange = function() {
-    //   if (xhr.readyState === 4 && xhr.status === 200) {
-    //     // Faça alguma coisa aqui, como mostrar uma mensagem de sucesso
-    //   }
-    // };
-    // var data = JSON.stringify({ "user": user2, "message": chat1 });
-    // xhr.send(data);
 }

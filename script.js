@@ -31,31 +31,32 @@ function change() {
     
 }
   
+var socket;
+
 function writeChat() {
-    //var user2 = Cookies.get("user");
     var user2 = localStorage['objectToPass'];
-    //localStorage.removeItem('objectToPass'); // Clear the localStorage
     var chat1 = document.getElementById("chatBox").value;
     var chat2 = (user2 + ": " + chat1);
-    //alert("You typed: " + chat1);
-    //append(myArray, 'Peach');
-  
-    //document.getElementById("chatLi").innerHTML = chat2;
 
-    // if(socket == undefined) {
-        const socket = new WebSocket('ws://localhost:4001')
+    if (socket && socket.readyState === WebSocket.OPEN) {
+        // Já existe uma conexão aberta, envia mensagem através dela
+        socket.send(String(chat2));
+    } else {
+        // Cria uma nova conexão WebSocket
+        socket = new WebSocket('ws://localhost:4001');
+
         socket.addEventListener('open', function (event) {
+            // Envia a mensagem após a conexão WebSocket estar aberta
             socket.send(String(chat2));
-        })
-        socket.addEventListener('message', function (event) {
-             console.log(event.data);
-             messagechat(event.data);
         });
-        //arrumar isso
-    // }
-    // else{
-    //     socket.send(String(chat2));
-    // }
+
+        socket.addEventListener('message', function (event) {
+            console.log(event.data);
+            messagechat(event.data);
+        });
+    }
+
+    document.getElementById("chatBox").value = "";
 }
 function messagechat(chat2) {
     const messageplace = document.querySelector(".messages");

@@ -14,11 +14,21 @@ function myFunction() {
       document.getElementById("error").innerHTML = "Please write a name";
     }
 }
+var socket;
 function change() {
     var user2 = localStorage['objectToPass'];
     //alert ("You typed: " + user2);
     document.getElementById("demo").innerHTML = user2;
 
+    socket = new WebSocket('ws://localhost:4001');
+
+    socket.addEventListener('open', function (event) {
+        //socket.send('');
+        socket.addEventListener('message', function (event) {
+            console.log(event.data);
+            messagechat(event.data);
+        });
+      });
     //listening to server
     // const socket = new WebSocket('ws://localhost:4001')
     // socket.addEventListener('open', function (event) {
@@ -31,7 +41,6 @@ function change() {
     
 }
   
-var socket;
 
 function writeChat() {
     var user2 = localStorage['objectToPass'];
